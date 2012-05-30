@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微过滤设置</title>
+<style>
+.blacklist {
+	border: 1px black solid;
+	width: 600px;
+	background-color: darkgray;
+}
+
+.whitelist {
+	border: 1px lightgray solid;
+	width: 600px;
+}
+
+button.addrule {
+	width:174px;
+	margin-left:3px;
+}
+button.save {
+	width: 174px;
+	height: 32px;
+	margin-left:4px;
+	font-size: 100%;
+}
+
+.field-column {
+	width: 90px;
+}
+.field-select {
+	width: 100%;
+}
+.operator-column {
+	width: 90px;
+}
+.operator-select {
+	width: 100%;
+}
+.keyword-column {
+	width: 300px;
+}
+.keyword-input {
+	width: 98%;
+}
+.repost-column {
+	width: 90px;
+}
+.repost-select {
+	width: 100%;
+}
+.delete-rule-column {
+	width: 22px;
+}
+.delete-rule-button {
+	color: #0C2F55;
+}
+</style>
+</head>
+<body>
+<h2>黑名单</h2>
+<div class="blacklist">
+<table id="blackrulelist" class="rulelist">
+</table>
+<div>
+<button id="addBlackRule" class="addrule">+ 添加规则</button>
+</div>
+</div>
+<br/>
+<h2>白名单</h2>
+<div class="whitelist">
+<table id="whiterulelist" class="rulelist">
+</table>
+<div>
+<button id="addWhiteRule" class="addrule">+ 添加规则</button>
+</div>
+</div>
+<br/><br/>
+<button id="btnSave" class="save">保存设置</button>
+</body>
+<script src="options.js"></script>
+</html>
