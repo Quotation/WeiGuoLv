@@ -83,8 +83,27 @@ function saveSettings() {
 		localStorage[storageKey] = json;
 	};
 	
+	var saveAdBlockOpts = function(storageKey, listID) {
+		var list = document.getElementById(listID);
+		var opts = new Array();
+		if (list) {
+			var checks = list.getElementsByTagName("input");
+			if (checks) {
+				for (var i in checks) {
+					if (checks[i].checked) {
+						opts.push(checks[i].value);
+					}
+				}
+			}
+		}
+		
+		var json = JSON.stringify(opts, null);
+		localStorage[storageKey] = json;
+	};
+	
 	saveRulesFromList("com.sinaapp.weiguolv.blacklist", "blackrulelist");
 	saveRulesFromList("com.sinaapp.weiguolv.whitelist", "whiterulelist");
+	saveAdBlockOpts("com.sinaapp.weiguolv.adblockopts", "adblocklist");
 	
 	alert("设置已保存，请刷新微博页面。");
 }
@@ -105,8 +124,27 @@ function loadSettings() {
 		}
 	};
 	
+	
+	var loadAdBlockOpts = function(storageKey, listID) {
+		var list = document.getElementById(listID);
+		var opts = localStorage[storageKey];
+		if (!list || !opts) {
+			return;
+		}
+		
+		var checks = list.getElementsByTagName("input");
+		if (checks) {
+			for (var i in checks) {
+				if (opts.indexOf(checks[i].value) != -1) {
+					checks[i].checked = true;
+				}
+			}
+		}
+	};
+	
 	loadAndFillRules("com.sinaapp.weiguolv.blacklist", "blackrulelist");
 	loadAndFillRules("com.sinaapp.weiguolv.whitelist", "whiterulelist");
+	loadAdBlockOpts("com.sinaapp.weiguolv.adblockopts", "adblocklist");
 }
 
 function initEventListeners() {
@@ -122,7 +160,37 @@ function initEventListeners() {
 	}, false);
 }
 
+function initAdBlockOptions() {
+	var opts = [
+		{ title: "纯广告", selector: "div#trustPagelet_ugrowth_invite,div#pl_rightmod_ads35,div#pl_rightmod_ads36,div.footer_adv" },
+
+		{ title: "输入框上方热门话题", selector: "div[node-type='recommendTopic']" },
+		
+		{ title: "写心情", selector: "div#pl_content_mood" },
+		{ title: "勋章", selector: "div#pl_rightmod_medal" },
+		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest" },
+		{ title: "热门话题", selector: "div#trustPagelete_zt_hottopic" },
+		{ title: "会员专区", selector: "div#trustPagelet_member_zone" },
+		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone" },
+//		{ title: "", selector: "div#pl_rightmod_vservice" },
+		{ title: "玩转微博", selector: "div#pl_rightmod_help" },
+		{ title: "公告栏", selector: "div#pl_rightmod_noticeboard" },
+	];
+	
+	var list = document.getElementById("adblocklist");
+	for (var i in opts) {
+		var newOpt = document.createElement("div");
+		newOpt.className = "adblockopt";
+		newOpt.innerHTML =
+		"<input type='checkbox' value=\"" + opts[i].selector + "\"/>" +
+		opts[i].title + "&nbsp;&nbsp;";
+		
+		list.appendChild(newOpt);
+	}
+}
+
 window.addEventListener("load", function() {
+	initAdBlockOptions();
 	loadSettings();
 	initEventListeners();
 }, false);

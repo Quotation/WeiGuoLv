@@ -9,10 +9,14 @@
 	width: 600px;
 	background-color: darkgray;
 }
-
 .whitelist {
 	border: 1px lightgray solid;
 	width: 600px;
+}
+.adblock {
+	border: 1px black solid;
+	width: 600px;
+	background-color: #FFFFCC;
 }
 
 button.addrule {
@@ -56,6 +60,11 @@ button.save {
 .delete-rule-button {
 	color: #0C2F55;
 }
+
+.adblockopt {
+	font-size: 12px;
+	display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -75,6 +84,10 @@ button.save {
 <div>
 <button id="addWhiteRule" class="addrule">+ 添加规则</button>
 </div>
+</div>
+<br/>
+<h2>去小广告</h2>
+<div class="adblock" id="adblocklist">
 </div>
 <br/><br/>
 <button id="btnSave" class="save">保存设置</button>

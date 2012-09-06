@@ -1,5 +1,6 @@
 var blacklist;
 var whitelist;
+var adBlockList;
 
 var filteredCount = 0;
 
@@ -20,6 +21,7 @@ function reloadRules() {
 	
 	blacklist = loadRules("com.sinaapp.weiguolv.blacklist");
 	whitelist = loadRules("com.sinaapp.weiguolv.whitelist");
+	adBlockList = loadRules("com.sinaapp.weiguolv.adblockopts");
 }
 
 function getFilteredCount() {
@@ -32,6 +34,8 @@ function initEventListeners() {
 			sendResponse(blacklist);
 		} else if (request.rulelist == "white") {
 			sendResponse(whitelist);
+		} else if (request.rulelist == "adblock") {
+			sendResponse(adBlockList);
 		}
 		
 		if (request.filteredCount != undefined) {

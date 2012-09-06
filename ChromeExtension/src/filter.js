@@ -1,5 +1,6 @@
 var blacklist;
 var whitelist;
+var adBlockList;
 
 var filteredCount;
 
@@ -11,6 +12,9 @@ function initialize() {
 	});
 	chrome.extension.sendRequest({rulelist: "white"}, function(response) {
 		whitelist = response;
+	});
+	chrome.extension.sendRequest({rulelist: "adblock"}, function(response) {
+		adBlockList = response;
 	});
 }
 
@@ -146,6 +150,12 @@ function filter() {
 			filteredCount++;
 		}
 	});
+	
+	if (adBlockList) {
+		for (var i in adBlockList) {
+			$(adBlockList[i]).remove();
+		}
+	}	
 	
 	chrome.extension.sendRequest({filteredCount: filteredCount});
 	
