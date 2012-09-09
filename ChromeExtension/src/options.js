@@ -162,30 +162,52 @@ function initEventListeners() {
 
 function initAdBlockOptions() {
 	var opts = [
-		{ title: "纯广告", selector: "div#trustPagelet_ugrowth_invite,div#pl_rightmod_ads35,div#pl_rightmod_ads36,div.footer_adv" },
-
-		{ title: "输入框上方热门话题", selector: "div[node-type='recommendTopic']" },
+		{ section: "广告"},	//--------------
+		{ title: "纯广告", selector: "div#trustPagelet_ugrowth_invite,"+
+									"div#pl_rightmod_ads35,div#pl_rightmod_ads36,"+
+									"div.footer_adv,"+
+									"div#pl_rightmod_weibodesk" },
 		
+		{ section: "个人信息"},	//--------------
+		{ title: "用户等级", selector: "span.W_level_ico" },
+		{ title: "会员皇冠标识", selector: "img.ico_member" },
+		{ title: "微博达人标识", selector: "img.ico_club" },
+		{ title: "勋章", selector: "div#pl_rightmod_medal,div#pl_content_medal" },
 		{ title: "写心情", selector: "div#pl_content_mood" },
-		{ title: "勋章", selector: "div#pl_rightmod_medal" },
+
+		{ section: "系统推荐"},	//--------------
+		{ title: "热门话题（输入框上方）", selector: "div[node-type='recommendTopic']" },
+		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic" },
+		{ title: "热评微博", selector: "div#pl_content_commentTopNav" },
 		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest" },
-		{ title: "热门话题", selector: "div#trustPagelete_zt_hottopic" },
 		{ title: "会员专区", selector: "div#trustPagelet_member_zone" },
 		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone" },
-//		{ title: "", selector: "div#pl_rightmod_vservice" },
+		
+		{ section: "帮助"},	//--------------
 		{ title: "玩转微博", selector: "div#pl_rightmod_help" },
+		{ title: "使用小帮助", selector: "div#Pl_Rightmod_Littlehelp" },
 		{ title: "公告栏", selector: "div#pl_rightmod_noticeboard" },
+		{ title: "意见反馈", selector: "div#pl_common_feedback" },
+		{ title: "举报处理中心", selector: "div#pl_common_reportentry" },
 	];
 	
 	var list = document.getElementById("adblocklist");
 	for (var i in opts) {
-		var newOpt = document.createElement("div");
-		newOpt.className = "adblockopt";
-		newOpt.innerHTML =
-		"<input type='checkbox' value=\"" + opts[i].selector + "\"/>" +
-		opts[i].title + "&nbsp;&nbsp;";
-		
-		list.appendChild(newOpt);
+		if (opts[i].section) {
+			var secHeader = document.createElement("p");
+			secHeader.className = "adblocksection";
+			secHeader.innerText = "== " + opts[i].section + " ==";
+			
+			list.appendChild(secHeader);
+		} else {
+			var newOpt = document.createElement("div");
+			newOpt.className = "adblockopt";
+			newOpt.innerHTML =
+			"<input type='checkbox' value=\"" + opts[i].selector + "\"/>" +
+			opts[i].title + "&nbsp;&nbsp;";
+			
+			list.appendChild(newOpt);
+		}
 	}
 }
 
