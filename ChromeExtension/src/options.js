@@ -174,7 +174,7 @@ function initAdBlockOptions() {
 		{ title: "微博达人标识", selector: "img.ico_club" },
 		{ title: "勋章", selector: "div#pl_rightmod_medal,div#pl_content_medal" },
 		{ title: "写心情", selector: "div#pl_content_mood" },
-
+		
 		{ section: "系统推荐"},	//--------------
 		{ title: "热门话题（输入框上方）", selector: "div[node-type='recommendTopic']" },
 		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic" },
