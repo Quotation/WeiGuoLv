@@ -170,25 +170,33 @@ function initAdBlockOptions() {
 		
 		{ section: "个人信息"},	//--------------
 		{ title: "用户等级", selector: "span.W_level_ico" },
-		{ title: "会员皇冠标识", selector: "img.ico_member" },
-		{ title: "微博达人标识", selector: "img.ico_club" },
+		{ title: "会员皇冠标识", selector: "img.ico_member,i.ico_member" },
+		{ title: "微博达人标识", selector: "img.ico_club,i.ico_member" },
 		{ title: "勋章", selector: "div#pl_rightmod_medal,div#pl_content_medal" },
 		{ title: "写心情", selector: "div#pl_content_mood" },
 		
 		{ section: "系统推荐"},	//--------------
 		{ title: "热门话题（输入框上方）", selector: "div[node-type='recommendTopic']" },
-		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic" },
+		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic,div#trustPagelet_zt_hottopicv5" },
 		{ title: "热评微博", selector: "div#pl_content_commentTopNav" },
-		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest" },
-		{ title: "会员专区", selector: "div#trustPagelet_member_zone" },
-		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone" },
+		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest,div#trustPagelet_recom_interestv5" },
+		{ title: "会员专区", selector: "div#trustPagelet_member_zone,div#trustPagelet_recom_memberv5" },
+		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone,div#trustPagelet_recom_allinonev5" },
+		
+		{ section: "V5新版微博"},	//--------------
+		{ title: "我的应用", selector: "div#pl_leftnav_app" },
+		{ title: "邀请码和升级Flash", selector: "div#pl_rightmod_yunying" },
+		{ title: "分组好友头像列表", selector: "div#pl_rightmod_groups" },
 		
 		{ section: "帮助"},	//--------------
 		{ title: "玩转微博", selector: "div#pl_rightmod_help" },
-		{ title: "使用小帮助", selector: "div#Pl_Rightmod_Littlehelp" },
+		{ title: "使用小帮助", selector: "div#Pl_Rightmod_Littlehelp," +
+									    "div#pl_rightmod_helpat," +
+									    "div#pl_rightmod_helpcomment," +
+									    "div#pl_rightmod_helpfav" },
 		{ title: "公告栏", selector: "div#pl_rightmod_noticeboard" },
-		{ title: "意见反馈", selector: "div#pl_common_feedback" },
-		{ title: "举报处理中心", selector: "div#pl_common_reportentry" },
+		{ title: "意见反馈", selector: "div#pl_common_feedback,div#pl_rightmod_feedback" },
+		{ title: "举报处理中心", selector: "div#pl_common_reportentry,div#pl_rightmod_reportentry" },
 	];
 	
 	var list = document.getElementById("adblocklist");
