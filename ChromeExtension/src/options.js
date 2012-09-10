@@ -171,7 +171,7 @@ function initAdBlockOptions() {
 		{ section: "个人信息"},	//--------------
 		{ title: "用户等级", selector: "span.W_level_ico" },
 		{ title: "会员皇冠标识", selector: "img.ico_member,i.ico_member" },
-		{ title: "微博达人标识", selector: "img.ico_club,i.ico_member" },
+		{ title: "微博达人标识", selector: "img.ico_club,i.ico_club" },
 		{ title: "勋章", selector: "div#pl_rightmod_medal,div#pl_content_medal" },
 		{ title: "写心情", selector: "div#pl_content_mood" },
 		

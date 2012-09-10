@@ -34,15 +34,43 @@ function createStatusFromElem(dl) {
 		return { nick: nick, content: text, source: source };
 	};
 	
-	var status = createSingleStatus($("dd.content > p[node-type='feed_list_content']", dl),
+	var createSingleStatusV5 = function(content, info, from) {
+		if (!content)
+			return undefined;
+		var nick = $("a[nick-name]", info).attr("nick-name");
+		var text = content.text();
+		if (!text || text.trim() == "") {
+			text = $("em", content).text();
+		}
+		var source = $("a[rel='nofollow']", from).text();
+
+		return { nick: nick, content: text, source: source };
+	};
+	
+	var statusContent = $("dd.content > p[node-type='feed_list_content']");
+	var status, repost;
+	if (statusContent.length != 0) {
+		status = createSingleStatus($("dd.content > p[node-type='feed_list_content']", dl),
 									$("dd.content > p.info", dl));
-	var repost = createSingleStatus($("dd.content > dl.comment > dt", dl),
+		repost = createSingleStatus($("dd.content > dl.comment > dt", dl),
 									$("dd.content > dl.comment > dd.info", dl));
+	} else {
+		status = createSingleStatusV5($("div.WB_detail > div.WB_text", dl),
+									  $("div.WB_detail > div.WB_info", dl),
+									  $("div.WB_detail > div.WB_func > div.WB_from", dl));
+		var repostElem = $("div[node-type='feed_list_forwardContent']", dl);
+		if (repostElem.length != 0) {
+			repost = createSingleStatusV5($("div.WB_text", repostElem),
+										  $("div.WB_info", repostElem),
+										  $("div.WB_func > div.WB_from", repostElem));
+		}
+	}
+	
 	status.repost = repost;
 			
 	// 新浪页面有异步加载，第一次遍历到的时候可能没有内容。
 	// 已经有内容的记为checked，下次不检查。
-	if (status.text && status.text != "") {
+	if (status && status.content && status.content != "") {
 		dl.setAttribute("weiguolv-checked", "true");
 	}
 	
@@ -133,14 +161,13 @@ function matchStatus(status) {
 
 function hideStatusElem(elem) {
 //	elem.style.backgroundColor = "lightgray";
-//	elem.style.display = "none";
 	if (elem.parentNode) {
 		elem.parentNode.removeChild(elem);
 	}
 }
 
 function filter() {
-	$("dl.feed_list").each(function() {
+	$("dl.feed_list,div.WB_feed_type").each(function() {
 		if (this.getAttribute("weiguolv-checked")) {
 			return;
 		}
