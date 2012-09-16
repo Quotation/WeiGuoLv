@@ -20,7 +20,7 @@ function initialize() {
 
 function createStatusFromElem(dl) {
 	var createSingleStatus = function(content, info) {
-		if (!content)
+		if (!content || content.length == 0)
 			return undefined;
 		var nick = $("a[nick-name]", content).attr("nick-name");
 		var text;
@@ -35,13 +35,10 @@ function createStatusFromElem(dl) {
 	};
 	
 	var createSingleStatusV5 = function(content, info, from) {
-		if (!content)
+		if (!content || content.length == 0)
 			return undefined;
 		var nick = $("a[nick-name]", info).attr("nick-name");
-		var text = content.text();
-		if (!text || text.trim() == "") {
-			text = $("em", content).text();
-		}
+		var text = content[0].innerText;
 		var source = $("a[rel='nofollow']", from).text();
 
 		return { nick: nick, content: text, source: source };
@@ -58,7 +55,7 @@ function createStatusFromElem(dl) {
 		status = createSingleStatusV5($("div.WB_detail > div.WB_text", dl),
 									  $("div.WB_detail > div.WB_info", dl),
 									  $("div.WB_detail > div.WB_func > div.WB_from", dl));
-		var repostElem = $("div[node-type='feed_list_forwardContent']", dl);
+		var repostElem = $("div.WB_media_expand", dl);
 		if (repostElem.length != 0) {
 			repost = createSingleStatusV5($("div.WB_text", repostElem),
 										  $("div.WB_info", repostElem),
