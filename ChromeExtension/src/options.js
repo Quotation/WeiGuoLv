@@ -177,15 +177,15 @@ function initAdBlockOptions() {
 		
 		{ section: "系统推荐"},	//--------------
 		{ title: "热门话题（输入框上方）", selector: "div[node-type='recommendTopic']" },
-		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic,div#trustPagelet_zt_hottopicv5" },
-		{ title: "热评微博", selector: "div#pl_content_commentTopNav" },
-		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest,div#trustPagelet_recom_interestv5" },
+		{ title: "热门话题（右侧）", selector: "div#trustPagelete_zt_hottopic,div#trustPagelet_zt_hottopicv5,#trustPagelet_mblog_topic" },
+		{ title: "热评微博", selector: "div#pl_content_commentTopNav,#trustPagelet_mblog_hotmblog" },
+		{ title: "可能感兴趣的人", selector: "div#trustPagelete_recom_interest,div#trustPagelet_recom_interestv5,div#pl_rightmod_recomperson" },
 		{ title: "会员专区", selector: "div#trustPagelet_member_zone,div#trustPagelet_recom_memberv5" },
-		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone,div#trustPagelet_recom_allinonev5" },
+		{ title: "微群微刊", selector: "div#trustPagelete_recom_allinone,div#trustPagelet_recom_allinonev5,#trustPagelet_mblog_weiba,#trustPagelet_mblog_weikan" },
 		
 		{ section: "V5新版微博"},	//--------------
 		{ title: "我的应用", selector: "div#pl_leftnav_app" },
-		{ title: "邀请码和升级Flash", selector: "div#pl_rightmod_yunying" },
+		{ title: "邀请码和升级Flash", selector: "div#pl_rightmod_yunying,#trustPagelet_checkin_lotteryv5" },
 		{ title: "分组好友头像列表", selector: "div#pl_rightmod_groups" },
 		
 		{ section: "帮助"},	//--------------

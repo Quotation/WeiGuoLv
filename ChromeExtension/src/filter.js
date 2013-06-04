@@ -62,13 +62,12 @@ function createStatusFromElem(dl) {
 										  $("div.WB_func > div.WB_from", repostElem));
 		}
 	}
-	
-	status.repost = repost;
 			
 	// 新浪页面有异步加载，第一次遍历到的时候可能没有内容。
 	// 已经有内容的记为checked，下次不检查。
 	if (status && status.content && status.content != "") {
 		dl.setAttribute("weiguolv-checked", "true");
+		status.repost = repost;
 	}
 	
 	return status;
